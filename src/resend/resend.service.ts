@@ -14,7 +14,7 @@ export class ResendService {
    * @param text
    */
   public async sendEmail(to_email: string, subject: string, html: string) {
-   await this.resend.sendEmail({
+    await this.resend.sendEmail({
       from: 'DataEcho<noreply@dataecho.info>',
       to: to_email,
       subject: subject,

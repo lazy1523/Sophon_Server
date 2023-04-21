@@ -1,11 +1,4 @@
-import {
-  Controller,
-  Post,
-  Body,
-  HttpStatus,
-  HttpCode,
-  SerializeOptions,
-} from '@nestjs/common';
+import { Controller, Post, Body, HttpStatus, HttpCode } from '@nestjs/common';
 import { WaitlistService } from './waitlist.service';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateWaitlistDto } from './dto/createWailist.dto';
