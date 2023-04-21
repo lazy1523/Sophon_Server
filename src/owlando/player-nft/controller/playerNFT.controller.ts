@@ -1,5 +1,14 @@
 // playerNFT.controller.ts
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { PlayerNFTService } from '../service/playerNFT.service';
 import { PlayerNFT } from '../entity/playerNFT.entity';
 
@@ -12,7 +21,6 @@ export class PlayerNFTController {
     return this.playerNFTService.findAll(skip, take);
   }
 
-
   @Get(':id')
   findOne(@Param('id') id: number): Promise<PlayerNFT> {
     return this.playerNFTService.findOne(id);
@@ -24,12 +32,12 @@ export class PlayerNFTController {
   }
 
   @Put(':id')
-  update(@Param('id') id: number, @Body() playerNFT: PlayerNFT): void {
-     this.playerNFTService.update(id, playerNFT);
+  async update(@Param('id') id: number, @Body() playerNFT: PlayerNFT) {
+    await this.playerNFTService.update(id, playerNFT);
   }
 
   @Delete(':id')
-  delete(@Param('id') id: number): void {
-    this.playerNFTService.remove(id);
+  async delete(@Param('id') id: number) {
+    await this.playerNFTService.remove(id);
   }
 }

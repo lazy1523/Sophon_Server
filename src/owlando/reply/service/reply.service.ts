@@ -13,7 +13,7 @@ export class ReplyService {
   async create(reply: Reply): Promise<Reply> {
     return await this.replyRepository.save(reply);
   }
-  
+
   async findAll(skip = 0, take = 10): Promise<Reply[]> {
     return await this.replyRepository.find({ skip, take });
   }

@@ -13,7 +13,7 @@ export class PlayerNFTService {
   async create(playerNFT: PlayerNFT): Promise<PlayerNFT> {
     return await this.playerNFTRepository.save(playerNFT);
   }
-  
+
   async findAll(skip = 0, take = 10): Promise<PlayerNFT[]> {
     return await this.playerNFTRepository.find({ skip, take });
   }

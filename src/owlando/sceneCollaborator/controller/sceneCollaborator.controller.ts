@@ -1,17 +1,27 @@
 // sceneCollaborator.controller.ts
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { SceneCollaboratorService } from '../service/sceneCollaborator.service';
 import { SceneCollaborator } from '../entity/sceneCollaborator.entity';
 
 @Controller('sceneCollaborators')
 export class SceneCollaboratorController {
-  constructor(private readonly sceneCollaboratorService: SceneCollaboratorService) {}
+  constructor(
+    private readonly sceneCollaboratorService: SceneCollaboratorService,
+  ) {}
 
   @Get()
   findAll(@Query('skip') skip: number, @Query('take') take: number) {
     return this.sceneCollaboratorService.findAll(skip, take);
   }
-
 
   @Get(':id')
   findOne(@Param('id') id: number): Promise<SceneCollaborator> {
@@ -19,17 +29,22 @@ export class SceneCollaboratorController {
   }
 
   @Post()
-  create(@Body() sceneCollaborator: SceneCollaborator): Promise<SceneCollaborator> {
+  create(
+    @Body() sceneCollaborator: SceneCollaborator,
+  ): Promise<SceneCollaborator> {
     return this.sceneCollaboratorService.create(sceneCollaborator);
   }
 
   @Put(':id')
-  update(@Param('id') id: number, @Body() sceneCollaborator: SceneCollaborator): void {
-     this.sceneCollaboratorService.update(id, sceneCollaborator);
+  async update(
+    @Param('id') id: number,
+    @Body() sceneCollaborator: SceneCollaborator,
+  ) {
+    await this.sceneCollaboratorService.update(id, sceneCollaborator);
   }
 
   @Delete(':id')
-  delete(@Param('id') id: number): void {
-    this.sceneCollaboratorService.remove(id);
+  async delete(@Param('id') id: number) {
+    await this.sceneCollaboratorService.remove(id);
   }
 }

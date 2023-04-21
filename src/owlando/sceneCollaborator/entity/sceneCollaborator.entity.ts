@@ -13,10 +13,19 @@ export class SceneCollaborator {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @CreateDateColumn({ type: 'timestamp', precision: 6, default: () => 'CURRENT_TIMESTAMP(6)' })
+  @CreateDateColumn({
+    type: 'timestamp',
+    precision: 6,
+    default: () => 'CURRENT_TIMESTAMP(6)',
+  })
   created_at: Date;
 
-  @UpdateDateColumn({ type: 'timestamp', precision: 6, default: () => 'CURRENT_TIMESTAMP(6)', onUpdate: 'CURRENT_TIMESTAMP(6)' })
+  @UpdateDateColumn({
+    type: 'timestamp',
+    precision: 6,
+    default: () => 'CURRENT_TIMESTAMP(6)',
+    onUpdate: 'CURRENT_TIMESTAMP(6)',
+  })
   updated_at: Date;
 
   @Column({ type: 'timestamp', precision: 6, nullable: true })
@@ -37,4 +46,3 @@ export class SceneCollaborator {
   @Column({ type: 'bigint' })
   playerID: number;
 }
-

@@ -13,7 +13,7 @@ export class PlayerService {
   async create(player: Player): Promise<Player> {
     return await this.playerRepository.save(player);
   }
-  
+
   async findAll(skip = 0, take = 10): Promise<Player[]> {
     return await this.playerRepository.find({ skip, take });
   }

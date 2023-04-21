@@ -10,7 +10,7 @@ import { ResendService } from 'src/resend/resend.service';
 @Module({
   imports: [TypeOrmModule.forFeature([WaitList])],
   controllers: [WaitlistController],
-  providers: [IsExist, IsNotExist, WaitlistService, ResendService,],
+  providers: [IsExist, IsNotExist, WaitlistService, ResendService],
   exports: [WaitlistService],
 })
 export class DataEchoModule {}

@@ -1,5 +1,14 @@
 // sceneModel.controller.ts
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { SceneModelService } from '../service/sceneModel.service';
 import { SceneModel } from '../entity/sceneModel.entity';
 
@@ -12,7 +21,6 @@ export class SceneModelController {
     return this.sceneModelService.findAll(skip, take);
   }
 
-
   @Get(':id')
   findOne(@Param('id') id: number): Promise<SceneModel> {
     return this.sceneModelService.findOne(id);
@@ -24,12 +32,12 @@ export class SceneModelController {
   }
 
   @Put(':id')
-  update(@Param('id') id: number, @Body() sceneModel: SceneModel): void {
-     this.sceneModelService.update(id, sceneModel);
+  async update(@Param('id') id: number, @Body() sceneModel: SceneModel) {
+    await this.sceneModelService.update(id, sceneModel);
   }
 
   @Delete(':id')
-  delete(@Param('id') id: number): void {
-    this.sceneModelService.remove(id);
+  async delete(@Param('id') id: number) {
+    await this.sceneModelService.remove(id);
   }
 }

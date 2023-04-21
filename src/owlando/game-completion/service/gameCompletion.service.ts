@@ -13,7 +13,7 @@ export class GameCompletionService {
   async create(gameCompletion: GameCompletion): Promise<GameCompletion> {
     return await this.gameCompletionRepository.save(gameCompletion);
   }
-  
+
   async findAll(skip = 0, take = 10): Promise<GameCompletion[]> {
     return await this.gameCompletionRepository.find({ skip, take });
   }

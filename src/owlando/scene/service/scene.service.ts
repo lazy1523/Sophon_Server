@@ -13,7 +13,7 @@ export class SceneService {
   async create(scene: Scene): Promise<Scene> {
     return await this.sceneRepository.save(scene);
   }
-  
+
   async findAll(skip = 0, take = 10): Promise<Scene[]> {
     return await this.sceneRepository.find({ skip, take });
   }

@@ -13,7 +13,7 @@ export class PlayerFollowService {
   async create(playerFollow: PlayerFollow): Promise<PlayerFollow> {
     return await this.playerFollowRepository.save(playerFollow);
   }
-  
+
   async findAll(skip = 0, take = 10): Promise<PlayerFollow[]> {
     return await this.playerFollowRepository.find({ skip, take });
   }

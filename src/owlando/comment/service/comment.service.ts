@@ -13,7 +13,7 @@ export class CommentService {
   async create(comment: Comment): Promise<Comment> {
     return await this.commentRepository.save(comment);
   }
-  
+
   async findAll(skip = 0, take = 10): Promise<Comment[]> {
     return await this.commentRepository.find({ skip, take });
   }

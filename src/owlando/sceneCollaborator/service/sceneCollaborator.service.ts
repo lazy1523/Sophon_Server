@@ -10,10 +10,12 @@ export class SceneCollaboratorService {
     private sceneCollaboratorRepository: Repository<SceneCollaborator>,
   ) {}
 
-  async create(sceneCollaborator: SceneCollaborator): Promise<SceneCollaborator> {
+  async create(
+    sceneCollaborator: SceneCollaborator,
+  ): Promise<SceneCollaborator> {
     return await this.sceneCollaboratorRepository.save(sceneCollaborator);
   }
-  
+
   async findAll(skip = 0, take = 10): Promise<SceneCollaborator[]> {
     return await this.sceneCollaboratorRepository.find({ skip, take });
   }
@@ -24,7 +26,10 @@ export class SceneCollaboratorService {
     return await this.sceneCollaboratorRepository.findOne(options);
   }
 
-  async update(id: number, sceneCollaborator: SceneCollaborator): Promise<void> {
+  async update(
+    id: number,
+    sceneCollaborator: SceneCollaborator,
+  ): Promise<void> {
     await this.sceneCollaboratorRepository.update(id, sceneCollaborator);
   }
 

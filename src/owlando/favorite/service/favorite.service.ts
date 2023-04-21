@@ -13,7 +13,7 @@ export class FavoriteService {
   async create(comment: Favorite): Promise<Favorite> {
     return await this.favoriteRepository.save(comment);
   }
-  
+
   async findAll(skip = 0, take = 10): Promise<Favorite[]> {
     return await this.favoriteRepository.find({ skip, take });
   }

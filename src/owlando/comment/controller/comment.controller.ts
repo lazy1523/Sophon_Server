@@ -1,5 +1,14 @@
 // comment.controller.ts
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { CommentService } from '../service/comment.service';
 import { Comment } from '../entity/comment.entity';
 
@@ -12,7 +21,6 @@ export class CommentController {
     return this.commentService.findAll(skip, take);
   }
 
-
   @Get(':id')
   findOne(@Param('id') id: number): Promise<Comment> {
     return this.commentService.findOne(id);
@@ -24,12 +32,12 @@ export class CommentController {
   }
 
   @Put(':id')
-  update(@Param('id') id: number, @Body() comment: Comment): void {
-     this.commentService.update(id, comment);
+  async update(@Param('id') id: number, @Body() comment: Comment) {
+    await this.commentService.update(id, comment);
   }
 
   @Delete(':id')
-  delete(@Param('id') id: number): void {
-    this.commentService.remove(id);
+  async delete(@Param('id') id: number) {
+    await this.commentService.remove(id);
   }
 }

@@ -2,9 +2,8 @@ import {
   ClassSerializerInterceptor,
   ValidationPipe,
   VersioningType,
-  Logger
+  Logger,
 } from '@nestjs/common';
-import * as express from 'express';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -22,7 +21,7 @@ async function bootstrap() {
   app.enableCors({
     origin: true,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    credentials: true
+    credentials: true,
   });
 
   const configService = app.get(ConfigService);
@@ -48,8 +47,10 @@ async function bootstrap() {
   SwaggerModule.setup('docs', app, document);
 
   await app.listen(PORT, () => {
-    logger.log(`服务已经启动,接口请访问:http://wwww.localhost:${PORT}/${PREFIX}`);
+    logger.log(
+      `服务已经启动,接口请访问:http://wwww.localhost:${PORT}/${PREFIX}`,
+    );
     logger.log(`服务已经启动,文档请访问:http://wwww.localhost:${PORT}/docs`);
-  })
+  });
 }
 void bootstrap();

@@ -1,5 +1,14 @@
 // gameCompletion.controller.ts
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { GameCompletionService } from '../service/gameCompletion.service';
 import { GameCompletion } from '../entity/gameCompletion.entity';
 
@@ -12,7 +21,6 @@ export class GameCompletionController {
     return this.gameCompletionService.findAll(skip, take);
   }
 
-
   @Get(':id')
   findOne(@Param('id') id: number): Promise<GameCompletion> {
     return this.gameCompletionService.findOne(id);
@@ -24,12 +32,15 @@ export class GameCompletionController {
   }
 
   @Put(':id')
-  update(@Param('id') id: number, @Body() gameCompletion: GameCompletion): void {
-     this.gameCompletionService.update(id, gameCompletion);
+  async update(
+    @Param('id') id: number,
+    @Body() gameCompletion: GameCompletion,
+  ) {
+    await this.gameCompletionService.update(id, gameCompletion);
   }
 
   @Delete(':id')
-  delete(@Param('id') id: number): void {
-    this.gameCompletionService.remove(id);
+  async delete(@Param('id') id: number) {
+    await this.gameCompletionService.remove(id);
   }
 }

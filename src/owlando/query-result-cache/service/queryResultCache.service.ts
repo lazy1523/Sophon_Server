@@ -13,7 +13,7 @@ export class QueryResultCacheService {
   async create(queryResultCache: QueryResultCache): Promise<QueryResultCache> {
     return await this.queryResultCacheRepository.save(queryResultCache);
   }
-  
+
   async findAll(skip = 0, take = 10): Promise<QueryResultCache[]> {
     return await this.queryResultCacheRepository.find({ skip, take });
   }

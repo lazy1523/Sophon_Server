@@ -13,7 +13,7 @@ export class SceneModelService {
   async create(sceneModel: SceneModel): Promise<SceneModel> {
     return await this.sceneModelRepository.save(sceneModel);
   }
-  
+
   async findAll(skip = 0, take = 10): Promise<SceneModel[]> {
     return await this.sceneModelRepository.find({ skip, take });
   }

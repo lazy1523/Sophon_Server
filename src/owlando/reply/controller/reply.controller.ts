@@ -1,5 +1,14 @@
 // reply.controller.ts
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { ReplyService } from '../service/reply.service';
 import { Reply } from '../entity/reply.entity';
 
@@ -12,7 +21,6 @@ export class ReplyController {
     return this.replyService.findAll(skip, take);
   }
 
-
   @Get(':id')
   findOne(@Param('id') id: number): Promise<Reply> {
     return this.replyService.findOne(id);
@@ -24,12 +32,12 @@ export class ReplyController {
   }
 
   @Put(':id')
-  update(@Param('id') id: number, @Body() reply: Reply): void {
-     this.replyService.update(id, reply);
+  async update(@Param('id') id: number, @Body() reply: Reply) {
+    await this.replyService.update(id, reply);
   }
 
   @Delete(':id')
-  delete(@Param('id') id: number): void {
-    this.replyService.remove(id);
+  async delete(@Param('id') id: number) {
+    await this.replyService.remove(id);
   }
 }

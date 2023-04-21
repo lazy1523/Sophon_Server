@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Put, Param, Delete, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Put,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { FavoriteService } from '../service/favorite.service';
 import { Favorite } from '../entity/favorite.entity';
 
@@ -11,7 +20,6 @@ export class FavoriteController {
     return this.favoriteService.findAll(skip, take);
   }
 
-
   @Get(':id')
   findOne(@Param('id') id: number): Promise<Favorite> {
     return this.favoriteService.findOne(id);
@@ -23,12 +31,12 @@ export class FavoriteController {
   }
 
   @Put(':id')
-  update(@Param('id') id: number, @Body() favorite: Favorite): void {
-     this.favoriteService.update(id, favorite);
+  async update(@Param('id') id: number, @Body() favorite: Favorite) {
+    await this.favoriteService.update(id, favorite);
   }
 
   @Delete(':id')
-  delete(@Param('id') id: number): void {
-    this.favoriteService.remove(id);
+  async delete(@Param('id') id: number) {
+    await this.favoriteService.remove(id);
   }
 }

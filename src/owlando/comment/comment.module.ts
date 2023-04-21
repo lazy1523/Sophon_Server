@@ -9,7 +9,7 @@ import { Comments } from './entity/comments.entity';
 import { CommentsLike } from './entity/commentLike.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Comment, Comments,CommentsLike])],
+  imports: [TypeOrmModule.forFeature([Comment, Comments, CommentsLike])],
   controllers: [CommentController],
   providers: [IsExist, IsNotExist, CommentService],
   exports: [CommentService],

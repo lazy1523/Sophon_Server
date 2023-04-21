@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { CommentModule } from './comment/comment.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { IsExist } from 'src/utils/validators/is-exists.validator';
 import { IsNotExist } from 'src/utils/validators/is-not-exists.validator';
 import { ResendService } from 'src/resend/resend.service';
@@ -28,11 +27,10 @@ import { SceneCollaboratorModule } from './sceneCollaborator/sceneCollaborator.m
     ReplyModule,
     SceneModelModule,
     SceneCollaboratorModule,
-    SceneModelModule
-
-],
+    SceneModelModule,
+  ],
   controllers: [],
-  providers: [IsExist, IsNotExist, ResendService,],
+  providers: [IsExist, IsNotExist, ResendService],
   exports: [],
 })
 export class OwlandoModule {}

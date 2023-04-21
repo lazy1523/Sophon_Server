@@ -13,7 +13,7 @@ export class LikeService {
   async create(like: Like): Promise<Like> {
     return await this.likeRepository.save(like);
   }
-  
+
   async findAll(skip = 0, take = 10): Promise<Like[]> {
     return await this.likeRepository.find({ skip, take });
   }
