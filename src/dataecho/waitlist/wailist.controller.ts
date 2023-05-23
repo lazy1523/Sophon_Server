@@ -1,12 +1,6 @@
-import {
-  Controller,
-  Post,
-  Body,
-  HttpStatus,
-  HttpCode,
-  SerializeOptions,
-} from '@nestjs/common';
+import { Controller, Post, Body, HttpStatus, HttpCode } from '@nestjs/common';
 import { WaitlistService } from './waitlist.service';
+import { DuneService } from '../duneAPI/dune.service';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateWaitlistDto } from './dto/createWailist.dto';
 
@@ -16,11 +10,17 @@ import { CreateWaitlistDto } from './dto/createWailist.dto';
   version: '1',
 })
 export class WaitlistController {
-  constructor(private readonly waitlistService: WaitlistService) {}
+  constructor(private readonly waitlistService: WaitlistService,private readonly duneService:DuneService) {}
 
   @Post('create')
   @HttpCode(HttpStatus.OK)
   create(@Body() createWaitlist: CreateWaitlistDto) {
     return this.waitlistService.create(createWaitlist);
+  }
+
+  @Post('getDuneData')
+  @HttpCode(HttpStatus.OK)
+  async getDuneData () {
+    return await this.duneService.getDuneData();
   }
 }

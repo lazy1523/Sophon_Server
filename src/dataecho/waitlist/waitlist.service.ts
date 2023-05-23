@@ -36,7 +36,7 @@ export class WaitlistService {
     await this.waitlistRepository.save(waitlist);
     const subject = 'DataEcho Waitlist';
     const html = `Thank you for your interest in DataEcho. We will give priority consideration to your sequence.`;
-    this.resendService.sendEmail(createWaitlist.email, subject, html);
+    await this.resendService.sendEmail(createWaitlist.email, subject, html);
     return waitlist;
   }
 }
