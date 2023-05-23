@@ -10,9 +10,9 @@ import { HttpModule } from '@nestjs/axios';
 import { DuneService } from './duneAPI/dune.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([WaitList]),HttpModule],
+  imports: [TypeOrmModule.forFeature([WaitList]), HttpModule],
   controllers: [WaitlistController],
-  providers: [IsExist, IsNotExist, WaitlistService, ResendService,DuneService],
+  providers: [IsExist, IsNotExist, WaitlistService, ResendService, DuneService],
   exports: [WaitlistService],
 })
 export class DataEchoModule {}

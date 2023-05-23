@@ -2,7 +2,7 @@ import {
   ClassSerializerInterceptor,
   ValidationPipe,
   VersioningType,
-  Logger
+  Logger,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory, Reflector } from '@nestjs/core';
@@ -13,18 +13,18 @@ import validationOptions from './utils/validation-options';
 
 export const IS_DEV = process.env.NODE_ENV !== 'production';
 async function bootstrap() {
-  const logger:Logger = new Logger('main.ts');
+  const logger: Logger = new Logger('main.ts');
 
   const app = await NestFactory.create(AppModule, {
     cors: true,
-    logger: IS_DEV ? ['log', 'debug', 'error', 'warn'] : ['error', 'warn']
+    logger: IS_DEV ? ['log', 'debug', 'error', 'warn'] : ['error', 'warn'],
   });
   // 开启跨域
-  app.enableCors();  
+  app.enableCors();
   const configService = app.get(ConfigService);
-  const PORT=configService.get('app.port');
-  const PREFIX=configService.get('app.apiPrefix');
-  
+  const PORT = configService.get('app.port');
+  const PREFIX = configService.get('app.apiPrefix');
+
   app.enableShutdownHooks();
   app.setGlobalPrefix(PREFIX, {
     exclude: ['/'],
@@ -47,9 +47,11 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('docs', app, document);
 
-  await app.listen(PORT,()=>{
-    logger.log(`服务已经启动,接口请访问:http://wwww.localhost:${PORT}/${PREFIX}`);
+  await app.listen(PORT, () => {
+    logger.log(
+      `服务已经启动,接口请访问:http://wwww.localhost:${PORT}/${PREFIX}`,
+    );
     logger.log(`服务已经启动,文档请访问:http://wwww.localhost:${PORT}/docs`);
-  })
+  });
 }
 void bootstrap();

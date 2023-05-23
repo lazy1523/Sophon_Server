@@ -10,7 +10,10 @@ import { CreateWaitlistDto } from './dto/createWailist.dto';
   version: '1',
 })
 export class WaitlistController {
-  constructor(private readonly waitlistService: WaitlistService,private readonly duneService:DuneService) {}
+  constructor(
+    private readonly waitlistService: WaitlistService,
+    private readonly duneService: DuneService,
+  ) {}
 
   @Post('create')
   @HttpCode(HttpStatus.OK)
@@ -20,7 +23,7 @@ export class WaitlistController {
 
   @Post('getDuneData')
   @HttpCode(HttpStatus.OK)
-  async getDuneData () {
+  async getDuneData() {
     return await this.duneService.getDuneData();
   }
 }
