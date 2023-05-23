@@ -25,15 +25,15 @@ async function bootstrap() {
   const PORT = configService.get('app.port');
   const PREFIX = configService.get('app.apiPrefix');
 
+
   app.enableShutdownHooks();
-  app.setGlobalPrefix(PREFIX, {
-    exclude: ['/'],
-  });
+  app.setGlobalPrefix(PREFIX);
   app.enableVersioning({
     type: VersioningType.URI,
   });
   app.useGlobalPipes(new ValidationPipe(validationOptions));
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
+  useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 

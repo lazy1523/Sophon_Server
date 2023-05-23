@@ -28,6 +28,7 @@ import { MailModule } from './mail/mail.module';
 import { HomeModule } from './home/home.module';
 import { DataSource } from 'typeorm';
 import { DataEchoModule } from './dataecho/dataecho.module';
+import { OwlandoModule } from './owlando/owlando.module';
 
 @Module({
   imports: [
@@ -83,7 +84,7 @@ import { DataEchoModule } from './dataecho/dataecho.module';
     ForgotModule,
     MailModule,
     HomeModule,
-
+    OwlandoModule,
     DataEchoModule,
   ],
 })
