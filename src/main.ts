@@ -25,7 +25,6 @@ async function bootstrap() {
   const PORT = configService.get('app.port');
   const PREFIX = configService.get('app.apiPrefix');
 
-
   app.enableShutdownHooks();
   app.setGlobalPrefix(PREFIX);
   app.enableVersioning({
