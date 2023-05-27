@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class HomeService {
-  constructor(private configService: ConfigService) { }
+  constructor(private configService: ConfigService) {}
 
   appInfo() {
     // 等待3秒后再返回
@@ -16,7 +16,5 @@ export class HomeService {
         });
       }, 3000);
     });
-
-
   }
 }

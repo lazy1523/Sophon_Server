@@ -29,7 +29,6 @@ import { HomeModule } from './home/home.module';
 import { DataSource } from 'typeorm';
 import { DataEchoModule } from './dataecho/dataecho.module';
 
-
 @Module({
   imports: [
     ConfigModule.forRoot({
