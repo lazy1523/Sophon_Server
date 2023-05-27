@@ -17,6 +17,7 @@ import { AuthRegisterLoginDto } from './dto/auth-register-login.dto';
 import { UsersService } from 'src/users/users.service';
 import { ForgotService } from 'src/forgot/forgot.service';
 import { MailService } from 'src/mail/mail.service';
+import parseExpiresIn from 'src/utils/parseExpiresIn';
 
 @Injectable()
 export class AuthService {
@@ -30,7 +31,7 @@ export class AuthService {
   async validateLogin(
     loginDto: AuthEmailLoginDto,
     onlyAdmin: boolean,
-  ): Promise<{ token: string; user: User }> {
+  ): Promise<{ token: string; user: User,expiresAt: number }> {
     const user = await this.usersService.findOne({
       email: loginDto.email,
     });
@@ -75,8 +76,12 @@ export class AuthService {
         id: user.id,
         role: user.role,
       });
+      // AUTH_JWT_TOKEN_EXPIRES_IN
+      let expiresInMs = parseExpiresIn(process.env.AUTH_JWT_TOKEN_EXPIRES_IN);
+      let now = Date.now();
+      let expiresAt = now + expiresInMs;
 
-      return { token, user: user };
+      return { token, user: user,expiresAt:expiresAt};
     } else {
       throw new HttpException(
         {
