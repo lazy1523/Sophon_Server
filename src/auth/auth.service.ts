@@ -31,7 +31,7 @@ export class AuthService {
   async validateLogin(
     loginDto: AuthEmailLoginDto,
     onlyAdmin: boolean,
-  ): Promise<{ token: string; user: User,expiresAt: number }> {
+  ): Promise<{ token: string; user: User; expiresAt: number }> {
     const user = await this.usersService.findOne({
       email: loginDto.email,
     });
@@ -77,11 +77,11 @@ export class AuthService {
         role: user.role,
       });
       // AUTH_JWT_TOKEN_EXPIRES_IN
-      let expiresInMs = parseExpiresIn(process.env.AUTH_JWT_TOKEN_EXPIRES_IN);
-      let now = Date.now();
-      let expiresAt = now + expiresInMs;
+      const expiresInMs = parseExpiresIn(process.env.AUTH_JWT_TOKEN_EXPIRES_IN);
+      const now = Date.now();
+      const expiresAt = now + expiresInMs;
 
-      return { token, user: user,expiresAt:expiresAt};
+      return { token, user: user, expiresAt: expiresAt };
     } else {
       throw new HttpException(
         {
