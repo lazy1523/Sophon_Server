@@ -23,9 +23,7 @@ export class WaitlistService {
       throw new HttpException(
         {
           status: HttpStatus.CONFLICT,
-          errors: {
-            email: 'email already exists',
-          },
+          msg: 'email already exists',
         },
         HttpStatus.UNPROCESSABLE_ENTITY,
       );

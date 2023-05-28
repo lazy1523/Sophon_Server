@@ -31,7 +31,7 @@ export class AuthService {
   async validateLogin(
     loginDto: AuthEmailLoginDto,
     onlyAdmin: boolean,
-  ): Promise<{ token: string; user: User; expiresAt: number }> {
+  ): Promise<{ token: string; user: User;expiresAt: number }> {
     const user = await this.usersService.findOne({
       email: loginDto.email,
     });
@@ -46,9 +46,7 @@ export class AuthService {
       throw new HttpException(
         {
           status: HttpStatus.UNPROCESSABLE_ENTITY,
-          errors: {
-            email: 'notFound',
-          },
+          msg: 'password or account does not exist'
         },
         HttpStatus.UNPROCESSABLE_ENTITY,
       );
@@ -58,9 +56,7 @@ export class AuthService {
       throw new HttpException(
         {
           status: HttpStatus.UNPROCESSABLE_ENTITY,
-          errors: {
-            email: `needLoginViaProvider:${user.provider}`,
-          },
+          msg: `needLoginViaProvider:${user.provider}`,
         },
         HttpStatus.UNPROCESSABLE_ENTITY,
       );
@@ -76,19 +72,17 @@ export class AuthService {
         id: user.id,
         role: user.role,
       });
-      // AUTH_JWT_TOKEN_EXPIRES_IN
-      const expiresInMs = parseExpiresIn(process.env.AUTH_JWT_TOKEN_EXPIRES_IN);
-      const now = Date.now();
-      const expiresAt = now + expiresInMs;
+  
+      let expiresInMs = parseExpiresIn(process.env.AUTH_JWT_TOKEN_EXPIRES_IN);
+      let now = Date.now();
+      let expiresAt = now + expiresInMs;
 
-      return { token, user: user, expiresAt: expiresAt };
+      return { token, user: user,expiresAt:expiresAt};
     } else {
       throw new HttpException(
         {
           status: HttpStatus.UNPROCESSABLE_ENTITY,
-          errors: {
-            password: 'incorrectPassword',
-          },
+          msg: 'password or account does not exist',
         },
         HttpStatus.UNPROCESSABLE_ENTITY,
       );
@@ -187,7 +181,7 @@ export class AuthService {
       throw new HttpException(
         {
           status: HttpStatus.NOT_FOUND,
-          error: `notFound`,
+          msg: `notFound`,
         },
         HttpStatus.NOT_FOUND,
       );
@@ -209,9 +203,7 @@ export class AuthService {
       throw new HttpException(
         {
           status: HttpStatus.UNPROCESSABLE_ENTITY,
-          errors: {
-            email: 'emailNotExists',
-          },
+         msg:'userNotExists',
         },
         HttpStatus.UNPROCESSABLE_ENTITY,
       );
@@ -245,9 +237,7 @@ export class AuthService {
       throw new HttpException(
         {
           status: HttpStatus.UNPROCESSABLE_ENTITY,
-          errors: {
-            hash: `notFound`,
-          },
+          msg:`notFound`,
         },
         HttpStatus.UNPROCESSABLE_ENTITY,
       );
@@ -281,9 +271,7 @@ export class AuthService {
           throw new HttpException(
             {
               status: HttpStatus.UNPROCESSABLE_ENTITY,
-              errors: {
-                oldPassword: 'incorrectOldPassword',
-              },
+              msg:'incorrectOldPassword' ,
             },
             HttpStatus.UNPROCESSABLE_ENTITY,
           );
@@ -292,9 +280,7 @@ export class AuthService {
         throw new HttpException(
           {
             status: HttpStatus.UNPROCESSABLE_ENTITY,
-            errors: {
-              oldPassword: 'missingOldPassword',
-            },
+            msg: 'missingOldPassword',
           },
           HttpStatus.UNPROCESSABLE_ENTITY,
         );

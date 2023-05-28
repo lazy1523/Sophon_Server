@@ -19,9 +19,7 @@ export class FilesService {
       throw new HttpException(
         {
           status: HttpStatus.UNPROCESSABLE_ENTITY,
-          errors: {
-            file: 'selectFile',
-          },
+          msg:'selectFile',
         },
         HttpStatus.UNPROCESSABLE_ENTITY,
       );
