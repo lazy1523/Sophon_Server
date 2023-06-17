@@ -11,6 +11,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DATABASE_NAME,
   synchronize: process.env.DATABASE_SYNCHRONIZE === 'true',
   dropSchema: false,
+  insecureAuth: true,
   keepConnectionAlive: true,
   logging: process.env.NODE_ENV !== 'production',
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
