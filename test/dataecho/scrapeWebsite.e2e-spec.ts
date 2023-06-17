@@ -14,8 +14,7 @@ describe('ScraperService', () => {
     service = module.get<ScraperService>(ScraperService);
   });
   it('should be defined', async () => {
-    const re= await service.scrapeWebsite();
+    const re = await service.scrapeWebsite();
     console.log(re);
-
-  },600000);
+  }, 600000);
 });
