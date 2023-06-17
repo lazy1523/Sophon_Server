@@ -31,7 +31,7 @@ export class AuthService {
   async validateLogin(
     loginDto: AuthEmailLoginDto,
     onlyAdmin: boolean,
-  ): Promise<{ token: string; user: User;expiresAt: number }> {
+  ): Promise<{ token: string; user: User; expiresAt: number }> {
     const user = await this.usersService.findOne({
       email: loginDto.email,
     });
@@ -46,7 +46,7 @@ export class AuthService {
       throw new HttpException(
         {
           status: HttpStatus.UNPROCESSABLE_ENTITY,
-          msg: 'password or account does not exist'
+          msg: 'password or account does not exist',
         },
         HttpStatus.UNPROCESSABLE_ENTITY,
       );
@@ -72,12 +72,12 @@ export class AuthService {
         id: user.id,
         role: user.role,
       });
-  
-      let expiresInMs = parseExpiresIn(process.env.AUTH_JWT_TOKEN_EXPIRES_IN);
-      let now = Date.now();
-      let expiresAt = now + expiresInMs;
 
-      return { token, user: user,expiresAt:expiresAt};
+      const expiresInMs = parseExpiresIn(process.env.AUTH_JWT_TOKEN_EXPIRES_IN);
+      const now = Date.now();
+      const expiresAt = now + expiresInMs;
+
+      return { token, user: user, expiresAt: expiresAt };
     } else {
       throw new HttpException(
         {
@@ -203,7 +203,7 @@ export class AuthService {
       throw new HttpException(
         {
           status: HttpStatus.UNPROCESSABLE_ENTITY,
-         msg:'userNotExists',
+          msg: 'userNotExists',
         },
         HttpStatus.UNPROCESSABLE_ENTITY,
       );
@@ -237,7 +237,7 @@ export class AuthService {
       throw new HttpException(
         {
           status: HttpStatus.UNPROCESSABLE_ENTITY,
-          msg:`notFound`,
+          msg: `notFound`,
         },
         HttpStatus.UNPROCESSABLE_ENTITY,
       );
@@ -271,7 +271,7 @@ export class AuthService {
           throw new HttpException(
             {
               status: HttpStatus.UNPROCESSABLE_ENTITY,
-              msg:'incorrectOldPassword' ,
+              msg: 'incorrectOldPassword',
             },
             HttpStatus.UNPROCESSABLE_ENTITY,
           );
