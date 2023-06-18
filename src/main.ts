@@ -12,6 +12,7 @@ import { AppModule } from './app.module';
 import validationOptions from './utils/validation-options';
 
 export const IS_DEV = process.env.NODE_ENV !== 'production';
+
 async function bootstrap() {
   const logger: Logger = new Logger('main.ts');
 
@@ -45,12 +46,8 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('docs', app, document);
-
-  await app.listen(PORT, () => {
-    logger.log(
-      `服务已经启动,接口请访问:http://wwww.localhost:${PORT}/${PREFIX}`,
-    );
-    logger.log(`服务已经启动,文档请访问:http://wwww.localhost:${PORT}/docs`);
-  });
+  await app.listen(PORT, '0.0.0.0');
+  logger.log(`服务已经启动,接口请访问:http://wwww.localhost:${PORT}/${PREFIX}`);
+  logger.log(`服务已经启动,文档请访问:http://wwww.localhost:${PORT}/docs`);
 }
 void bootstrap();
