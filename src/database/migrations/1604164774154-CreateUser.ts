@@ -61,12 +61,22 @@ export class CreateUser1604164774154 implements MigrationInterface {
     await queryRunner.query(
       `ALTER TABLE \`user\` DROP FOREIGN KEY \`FK_75e2be4ce11d447ef43be0e374f\``,
     );
-    await queryRunner.query(`DROP INDEX \`IDX_df507d27b0fb20cd5f7bef9b9a\` ON \`forgot\``);
+    await queryRunner.query(
+      `DROP INDEX \`IDX_df507d27b0fb20cd5f7bef9b9a\` ON \`forgot\``,
+    );
     await queryRunner.query(`DROP TABLE \`forgot\``);
-    await queryRunner.query(`DROP INDEX \`IDX_e282acb94d2e3aec10f480e4f6\` ON \`user\``);
-    await queryRunner.query(`DROP INDEX \`IDX_f0e1b4ecdca13b177e2e3a0613\` ON \`user\``);
-    await queryRunner.query(`DROP INDEX \`IDX_58e4dbff0e1a32a9bdc861bb29\` ON \`user\``);
-    await queryRunner.query(`DROP INDEX \`IDX_9bd2fe7a8e694dedc4ec2f666f\` ON \`user\``);
+    await queryRunner.query(
+      `DROP INDEX \`IDX_e282acb94d2e3aec10f480e4f6\` ON \`user\``,
+    );
+    await queryRunner.query(
+      `DROP INDEX \`IDX_f0e1b4ecdca13b177e2e3a0613\` ON \`user\``,
+    );
+    await queryRunner.query(
+      `DROP INDEX \`IDX_58e4dbff0e1a32a9bdc861bb29\` ON \`user\``,
+    );
+    await queryRunner.query(
+      `DROP INDEX \`IDX_9bd2fe7a8e694dedc4ec2f666f\` ON \`user\``,
+    );
     await queryRunner.query(`DROP TABLE \`user\``);
     await queryRunner.query(`DROP TABLE \`status\``);
     await queryRunner.query(`DROP TABLE \`role\``);
